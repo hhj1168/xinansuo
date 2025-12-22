@@ -275,6 +275,12 @@ function playSutra(btn) {
     sutraOverlay.classList.remove('hidden');
     aura.classList.remove('hidden');
 
+    // 动态设置诵经话语
+    const mantraEl = sutraOverlay.querySelector('.sutra-instruction');
+    if (mantraEl && ritualState.currentDeity && ritualState.currentDeity.sutraMantra) {
+        mantraEl.textContent = ritualState.currentDeity.sutraMantra;
+    }
+
     // 播放音频
     const audio = document.getElementById('sutraAudio');
     if (audio.src) {

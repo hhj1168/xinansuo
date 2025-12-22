@@ -86,7 +86,8 @@ const DATABASE = {
             musicName: "大辞大悲",
             musicUrl: "https://www.chosic.com/wp-content/uploads/2021/07/The-Zen-Way.mp3",
             sutraUrl: "https://www.chosic.com/wp-content/uploads/2021/07/Rain-and-Thunder.mp3",
-            voiceMessage: "慈悲为怀，愿力所及，必有所应；诚心祈愿，麟儿自到。"
+            voiceMessage: "慈悲为怀，愿力所及，必有所应；诚心祈愿，麟儿自到。",
+            sutraMantra: "慈水一滴，子息自临。"
         },
         qixiannv: {
             id: "qixiannv",
@@ -105,7 +106,8 @@ const DATABASE = {
             musicName: "仙乐飘飘",
             musicUrl: "assets/audio/bgm/qixiannv.mp3",
             sutraUrl: "assets/audio/sutra/qixian_chant.mp3",
-            voiceMessage: "仙凡有情，愿你家庭和睦，子女聪慧，共享天伦。"
+            voiceMessage: "仙凡有情，愿你家庭和睦，子女聪慧，共享天伦。",
+            sutraMantra: "天缘一缕，红线轻牵，女儿福降。"
         },
         taishen: {
             id: "taishen",
@@ -124,7 +126,8 @@ const DATABASE = {
             musicName: "安胎曲",
             musicUrl: "assets/audio/bgm/taishen.mp3",
             sutraUrl: "assets/audio/sutra/taishen_ritual.mp3",
-            voiceMessage: "吾在此守护，愿母子连心，胎元稳固，平安顺产。"
+            voiceMessage: "吾在此守护，愿母子连心，胎元稳固，平安顺产。",
+            sutraMantra: "胎息既安，祥光满室，母子无惊。"
         },
 
         // 姻缘与情感 (3位)
@@ -145,7 +148,8 @@ const DATABASE = {
             musicName: "月下仙音",
             musicUrl: "https://www.chosic.com/wp-content/uploads/2021/04/And-So-It-Begins-Inspired-By-Crush-Sometimes.mp3",
             sutraUrl: "https://www.chosic.com/wp-content/uploads/2021/04/And-So-It-Begins-Inspired-By-Crush-Sometimes.mp3",
-            voiceMessage: "姻缘天定，红绳系足。珍惜当下，自会良缘佳偶。"
+            voiceMessage: "姻缘天定，红绳系足。珍惜当下，自会良缘佳偶。",
+            sutraMantra: "红线既系，三生有定，不早不迟。"
         },
         hehe_erxian: {
             id: "hehe_erxian",
@@ -164,7 +168,8 @@ const DATABASE = {
             musicName: "和合之音",
             musicUrl: "assets/audio/bgm/hehe.mp3",
             sutraUrl: "assets/audio/sutra/hehe_song.mp3",
-            voiceMessage: "和气生财，合心致远。愿人间常驻欢笑，夫妻百年好合。"
+            voiceMessage: "和气生财，合心致远。愿人间常驻欢笑，夫妻百年好合。",
+            sutraMantra: "冷暖在心，和合在念，一转即圆。"
         },
         nvwa: {
             id: "nvwa",
@@ -183,7 +188,8 @@ const DATABASE = {
             musicName: "补天遗音",
             musicUrl: "assets/audio/bgm/nvwa.mp3",
             sutraUrl: "assets/audio/sutra/nvwa_prayer.mp3",
-            voiceMessage: "补天功成，造化弄人。愿其灵感指引，赐你一生幸福。"
+            voiceMessage: "补天功成，造化弄人。愿其灵感指引，赐你一生幸福。",
+            sutraMantra: "心土既润，形缘自成，桃花不请而来。"
         },
 
         // 学业与事业 (3位)
@@ -204,7 +210,8 @@ const DATABASE = {
             musicName: "文昌正气",
             musicUrl: "https://www.chosic.com/wp-content/uploads/2021/05/Peaceful-Morning.mp3",
             sutraUrl: "https://www.chosic.com/wp-content/uploads/2021/05/Peaceful-Morning.mp3",
-            voiceMessage: "文运昌隆，金榜题名。灵台清明，自见广阔乾坤。"
+            voiceMessage: "文运昌隆，金榜题名。灵台清明，自见广阔乾坤。",
+            sutraMantra: "笔有正气，文运自生；一榜易得，一心难求。"
         },
         guansheng: {
             id: "guansheng",
@@ -223,7 +230,8 @@ const DATABASE = {
             musicName: "忠义之歌",
             musicUrl: "assets/audio/bgm/guandicheng.mp3",
             sutraUrl: "assets/audio/sutra/guandi_mantra.mp3",
-            voiceMessage: "忠义当头，勇冠三军。愿你职场平坦，事倍功半。"
+            voiceMessage: "忠义当头，勇冠三军。愿你职场平坦，事倍功半。",
+            sutraMantra: "忠义立身，事自可成；锋刃之中，亦有太平。"
         },
         kuixing: {
             id: "kuixing",
@@ -242,7 +250,8 @@ const DATABASE = {
             musicName: "文思泉涌",
             musicUrl: "assets/audio/bgm/kuixing.mp3",
             sutraUrl: "assets/audio/sutra/creative_flow.mp3",
-            voiceMessage: "魁星点斗，名扬天下。愿你才思泉涌，创意无限。"
+            voiceMessage: "魁星点斗，名扬天下。愿你才思泉涌，创意无限。",
+            sutraMantra: "一踢斗星落，灵光乍现，鬼神侧目。"
         },
 
         // 财富与商业 (3位)
@@ -263,7 +272,8 @@ const DATABASE = {
             musicName: "招财进宝",
             musicUrl: "assets/audio/bgm/bigan_wealth.mp3",
             sutraUrl: "assets/audio/sutra/caishen_mantra.mp3",
-            voiceMessage: "生财有道，富贵有恒。持信者必能广进财源。"
+            voiceMessage: "生财有道，富贵有恒。持信者必能广进财源。",
+            sutraMantra: "心正则财正，明取长流，不绝于世。"
         },
         zhaogongming: {
             id: "zhaogongming",
@@ -282,7 +292,8 @@ const DATABASE = {
             musicName: "财神到",
             musicUrl: "assets/audio/bgm/zhaogongming.mp3",
             sutraUrl: "assets/audio/sutra/zhaogongming_ritual.mp3",
-            voiceMessage: "招财利市，进宝纳珍。乘时而起，必获丰盈。"
+            voiceMessage: "招财利市，进宝纳珍。乘时而起，必获丰盈。",
+            sutraMantra: "财可骤至，福不妄临；得失之间，唯德可凭。"
         },
         guangong_wealth: {
             id: "guangong_wealth",
@@ -301,7 +312,8 @@ const DATABASE = {
             musicName: "义财双全",
             musicUrl: "assets/audio/bgm/guangong_caishen.mp3",
             sutraUrl: "assets/audio/sutra/guandi_wealth_chant.mp3",
-            voiceMessage: "大义秉然，利财双收。经商之道，信义为先。"
+            voiceMessage: "大义秉然，利财双收。经商之道，信义为先。",
+            sutraMantra: "义在财前，利自随后；一念不欺，天地为证。"
         },
 
         // 健康与长寿 (3位)
@@ -322,7 +334,8 @@ const DATABASE = {
             musicName: "药师心咒",
             musicUrl: "assets/audio/bgm/yaoshi_buddha.mp3",
             sutraUrl: "assets/audio/sutra/yaoshi_mantra.mp3",
-            voiceMessage: "琉璃光照，百病消弥。愿尔离苦得乐，康健如初。"
+            voiceMessage: "琉璃光照，百病消弥。愿尔离苦得乐，康健如初。",
+            sutraMantra: "大愿已现，病苦自消；身心澄明，如琉璃净。"
         },
         nanji: {
             id: "nanji",
@@ -341,7 +354,8 @@ const DATABASE = {
             musicName: "寿比南山",
             musicUrl: "assets/audio/bgm/nanjixianweng.mp3",
             sutraUrl: "assets/audio/sutra/longevity_chant.mp3",
-            voiceMessage: "松龄鹤算，福寿双全。静养身心，自得南山之寿。"
+            voiceMessage: "松龄鹤算，福寿双全。静养身心，自得南山之寿。",
+            sutraMantra: "寿同山岳，松鹤为证；一笑之间，岁月自长。"
         },
         baosheng: {
             id: "baosheng",
@@ -360,7 +374,8 @@ const DATABASE = {
             musicName: "妙手回春",
             musicUrl: "assets/audio/bgm/baosheng.mp3",
             sutraUrl: "assets/audio/sutra/healing_chant.mp3",
-            voiceMessage: "妙手回春，药到病除。愿你早日康复，重焕生机。"
+            voiceMessage: "妙手回春，药到病除。愿你早日康复，重焕生机。",
+            sutraMantra: "保生在此，疾疠当退；一脉仁心，护世安民。"
         },
 
         // 出行与平安 (3位)
@@ -381,7 +396,8 @@ const DATABASE = {
             musicName: "海天一色",
             musicUrl: "assets/audio/bgm/mazu_ocean.mp3",
             sutraUrl: "assets/audio/sutra/mazu_prayer.mp3",
-            voiceMessage: "波平如镜，一路顺风。无论海内天涯，吾自护体。"
+            voiceMessage: "波平如镜，一路顺风。无论海内天涯，吾自护体。",
+            sutraMantra: "海波可平，天后在上；一帆所至，万里皆安。"
         },
         nezha: {
             id: "nezha",
@@ -400,7 +416,8 @@ const DATABASE = {
             musicName: "风火轮转",
             musicUrl: "assets/audio/bgm/nezha_vibe.mp3",
             sutraUrl: "assets/audio/sutra/nezha_mantra.mp3",
-            voiceMessage: "斩妖除魔，驱邪避厄。正气满乾坤，妖氛自消散。"
+            voiceMessage: "斩妖除魔，驱邪避厄。正气满乾坤，妖氛自消散。",
+            sutraMantra: "风火在足，道路自开；前路不平，我来踏平。"
         },
         tudi: {
             id: "tudi",
@@ -419,7 +436,8 @@ const DATABASE = {
             musicName: "财源广进",
             musicUrl: "https://www.chosic.com/wp-content/uploads/2021/07/Purify-Your-Mind.mp3",
             sutraUrl: "https://www.chosic.com/wp-content/uploads/2021/07/Purify-Your-Mind.mp3",
-            voiceMessage: "平安是福，德在土中。出入顺遂，夜梦吉祥。"
+            voiceMessage: "平安是福，德在土中。出入顺遂，夜梦吉祥。",
+            sutraMantra: "此地有主，福德在位；人安土顺，岁岁平安。"
         }
     }
 };
