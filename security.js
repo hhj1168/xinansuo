@@ -22,7 +22,7 @@
                 <div style="height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#1a0f0a; color:#E8D082; text-align:center; padding:20px; font-family:serif;">
                     <h1 style="font-size:40px;">⚠️ 发现非授权镜像</h1>
                     <p style="font-size:18px; line-height:1.8;">您正在访问的项目「心安所寄」为非授权克隆版本。<br>为了您的数据安全与祈愿灵验，请访问原作者唯一正版地址：</p>
-                    <a href="https://yourusername.github.io" style="color:#FFF; background:#B8860B; padding:10px 20px; border-radius:5px; text-decoration:none; margin-top:20px;">点击访问正版项目</a>
+                    <a href="https://hhj1168.github.io/xinansuo/" style="color:#FFF; background:#B8860B; padding:10px 20px; border-radius:5px; text-decoration:none; margin-top:20px;">点击访问正版项目</a>
                     <p style="margin-top:50px; opacity:0.5; font-size:12px;">© 2025 心安所寄 版权所有。禁止一切非法克隆行为。</p>
                 </div>
             `;
