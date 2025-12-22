@@ -327,3 +327,39 @@ body {
         max-width: 1200px;
     }
 }
+
+/* ==================== 神明头像位置微调 ==================== */
+/* 
+   针对特定神明的全身立绘，调整截图位置，确保圆形图标中显示头部。
+   默认是 top center，这里向下偏移(center 20%)以居中显示面部。
+*/
+
+/* 月下老人 */
+.deity-card[data-id="yuexialao"] .deity-avatar {
+    object-position: center 20%;
+}
+
+/* 和合二仙 */
+.deity-card[data-id="hehe_erxian"] .deity-avatar {
+    object-position: center 20%;
+}
+
+/* 关公(商业) */
+.deity-card[data-id="guangong_wealth"] .deity-avatar {
+    object-position: center 15%;
+}
+
+/* 关圣帝君 */
+.deity-card[data-id="guansheng"] .deity-avatar {
+    object-position: center 15%;
+}
+
+/* 药师佛 */
+.deity-card[data-id="yaoshi"] .deity-avatar {
+    object-position: center 15%;
+}
+
+/* 保生大帝 */
+.deity-card[data-id="baosheng"] .deity-avatar {
+    object-position: center 15%;
+}
