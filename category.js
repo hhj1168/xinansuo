@@ -62,6 +62,22 @@ function renderDeityList(category) {
         const card = createDeityCard(deity, category);
         listContainer.appendChild(card);
     });
+
+    // 智能预加载：在用户浏览列表时，后台静默加载高清大图
+    preloadDeityFullImages(deities);
+}
+
+/**
+ * 预加载神明高清大图 (WebP)
+ * 利用浏览器空闲时间，确保跳转到仪式页时立绘秒开
+ */
+function preloadDeityFullImages(deities) {
+    deities.forEach(deity => {
+        if (deity.image) {
+            const img = new Image();
+            img.src = deity.image;
+        }
+    });
 }
 
 // 创建神明卡片
@@ -77,7 +93,7 @@ function createDeityCard(deity, category) {
 
     card.innerHTML = `
         <div class="deity-avatar-wrapper">
-            <img src="${deity.avatar}" alt="${deity.name}" class="deity-avatar" onerror="this.src='new_images/placeholder_avatar.png'">
+            <img src="${deity.avatar}" alt="${deity.name}" class="deity-avatar" loading="lazy" onerror="this.src='new_images/placeholder_avatar.png'">
         </div>
         <div class="deity-info">
             <h4 class="deity-name">${deity.name}</h4>
