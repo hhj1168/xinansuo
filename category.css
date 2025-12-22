@@ -356,10 +356,10 @@ body {
 
 /* 药师佛 */
 .deity-card[data-id="yaoshi"] .deity-avatar {
-    object-position: center 15%;
+    object-position: center 25%;
 }
 
 /* 保生大帝 */
 .deity-card[data-id="baosheng"] .deity-avatar {
-    object-position: center 15%;
+    object-position: center 25%;
 }

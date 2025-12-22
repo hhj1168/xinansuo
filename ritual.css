@@ -729,7 +729,7 @@
     z-index: 3000;
     pointer-events: none;
     width: 90%;
-    max-width: 320px;
+    max-width: 260px;
     display: flex;
     justify-content: center;
     align-items: center;
