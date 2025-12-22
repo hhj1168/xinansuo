@@ -8,7 +8,7 @@
     const AUTHORIZED_DOMAINS = [
         'localhost',
         '127.0.0.1',
-        'yourusername.github.io' // 替换为您的 GitHub Pages 地址
+        'hhj1168.github.io'
     ];
 
     // 2. 检查运行环境
