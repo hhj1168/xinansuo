@@ -1,0 +1,507 @@
+/* ==================== 抽签结果页面样式 ==================== */
+
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #FFF8E1 0%, #FFE0B2 100%);
+    min-height: 100vh;
+    padding-bottom: 100px;
+}
+
+/* 悬浮导航 */
+.floating-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+.nav-back,
+.nav-share {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.nav-back:hover,
+.nav-share:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.nav-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* 主容器 */
+.container {
+    max-width: 600px;
+    margin: 80px auto 0;
+    padding: 0 20px;
+}
+
+/* ==================== 抽签动画区 ==================== */
+.animation-container {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.fortune-stick-container {
+    perspective: 1000px;
+}
+
+.fortune-stick {
+    width: 80px;
+    height: 200px;
+    position: relative;
+    animation: shakeStick 1s ease-in-out, flyOut 1s ease-in-out 1s forwards;
+    transform-style: preserve-3d;
+}
+
+.stick-body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #D4A574 0%, #C19A6B 100%);
+    border-radius: 40px 40px 10px 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.stick-body::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 30px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+    border-radius: 20px;
+}
+
+.stick-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+    font-weight: bold;
+    color: #8B4513;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'STKaiti', 'KaiTi', serif;
+}
+
+/* 抽签动画 */
+@keyframes shakeStick {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-15deg);
+    }
+
+    75% {
+        transform: rotate(15deg);
+    }
+}
+
+@keyframes flyOut {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-100px) rotate(360deg) scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-150px) rotate(720deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+/* ==================== 签文展示区 ==================== */
+.fortune-content {
+    animation: fadeInUp 0.6s ease-out 2.5s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 神明信息 */
+.deity-info {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.deity-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #D4AF37;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    margin-bottom: 12px;
+}
+
+.deity-name {
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+}
+
+/* 签号和签级 */
+.fortune-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.fortune-number-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.fortune-decoration {
+    font-size: 16px;
+    color: #D4AF37;
+    font-weight: bold;
+}
+
+.fortune-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    font-family: 'STKaiti', 'KaiTi', serif;
+}
+
+.fortune-level {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 6px 20px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 8px;
+}
+
+/* 签级颜色 */
+.fortune-level.top {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+}
+
+.fortune-level.good {
+    background: linear-gradient(135deg, #F4A460 0%, #E67E22 100%);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(244, 164, 96, 0.4);
+}
+
+.fortune-level.medium {
+    background: linear-gradient(135deg, #87CEEB 0%, #4A90E2 100%);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(135, 206, 235, 0.4);
+}
+
+.fortune-level.low {
+    background: linear-gradient(135deg, #B0C4DE 0%, #778899 100%);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(176, 196, 222, 0.4);
+}
+
+/* 古文签诗 */
+.poem-container {
+    margin-bottom: 30px;
+}
+
+.poem-scroll {
+    background: linear-gradient(135deg, #FFF9E6 0%, #FFEFD5 100%);
+    border: 2px solid #D4AF37;
+    border-radius: 12px;
+    padding: 30px 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.poem-scroll::before,
+.poem-scroll::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #D4AF37;
+}
+
+.poem-scroll::before {
+    top: -2px;
+    left: -2px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.poem-scroll::after {
+    bottom: -2px;
+    right: -2px;
+    border-left: none;
+    border-top: none;
+}
+
+.poem-content {
+    font-family: 'STKaiti', 'KaiTi', serif;
+    font-size: 18px;
+    line-height: 2.2;
+    color: #3E2723;
+    text-align: center;
+}
+
+.poem-content p {
+    margin: 0;
+    padding: 4px 0;
+}
+
+/* 白话解读 */
+.interpretation-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.interpretation-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #424242;
+    text-align: justify;
+}
+
+/* 行动建议 */
+.suggestions-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.suggestions-list {
+    list-style: none;
+    padding: 0;
+}
+
+.suggestions-list li {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #666;
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+}
+
+.suggestions-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* 时间戳 */
+.fortune-timestamp {
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 30px;
+}
+
+/* ==================== 底部操作区 ==================== */
+.action-buttons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 16px 20px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    animation: slideUp 0.4s ease-out 3s both;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.btn {
+    flex: 1;
+    max-width: 150px;
+    height: 48px;
+    border: none;
+    border-radius: 24px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 215, 0, 0.5);
+}
+
+.btn-secondary {
+    background: #fff;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+    background: #f5f5f5;
+    border-color: #ccc;
+}
+
+.btn-icon {
+    font-size: 18px;
+}
+
+/* ==================== Toast提示 ==================== */
+.toast {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 2000;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.toast-icon {
+    font-size: 18px;
+    color: #4CAF50;
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .fortune-number {
+        font-size: 20px;
+    }
+
+    .poem-content {
+        font-size: 16px;
+    }
+
+    .action-buttons {
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        max-width: none;
+        flex-basis: calc(50% - 6px);
+    }
+
+    .btn:last-child {
+        flex-basis: 100%;
+    }
+}
+
+/* ==================== 打印样式 ==================== */
+@media print {
+
+    .floating-nav,
+    .action-buttons,
+    .toast {
+        display: none;
+    }
+
+    body {
+        background: #fff;
+    }
+
+    .container {
+        margin-top: 20px;
+    }
+}

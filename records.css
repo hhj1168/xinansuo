@@ -1,0 +1,351 @@
+/* ==================== 祈愿记录页样式 ==================== */
+
+:root {
+    --header-height: 120px;
+    /* 包含标题和Tab的高度 */
+    --font-heading: 'Noto Serif SC', serif;
+    --font-body: 'Noto Sans SC', sans-serif;
+}
+
+body {
+    background-color: #f8f6f2;
+    min-height: 100vh;
+}
+
+/* 顶部导航与搜索 */
+.records-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+    height: 60px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.action-icon-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: #444;
+}
+
+/* 搜索栏 */
+.search-bar {
+    padding: 8px 16px;
+    display: flex;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.search-bar.hidden {
+    display: none;
+}
+
+#searchInput {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    outline: none;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+#clearSearch {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #999;
+    padding: 0 4px;
+}
+
+/* 分类Tab */
+.filter-tabs {
+    display: flex;
+    overflow-x: auto;
+    padding: 0 8px 8px;
+    scrollbar-width: none;
+}
+
+.filter-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-tab {
+    flex: 0 0 auto;
+    padding: 6px 16px;
+    margin: 0 4px;
+    border-radius: 15px;
+    border: 1px solid transparent;
+    background: #f0f0f0;
+    font-size: 0.85rem;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-tab.active {
+    background: #4A3020;
+    color: #E8D082;
+    font-weight: 600;
+}
+
+/* 统计简报 */
+.records-main {
+    padding-top: 130px;
+    /* 避开固定头部 */
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.stats-banner {
+    background: linear-gradient(135deg, #4A3020, #2C1810);
+    margin: 0 16px 20px;
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #E8D082;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 记录列表 */
+.records-list {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* 记录卡片 */
+.record-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    display: grid;
+    grid-template-areas:
+        "icon info level"
+        "wish wish wish"
+        "footer footer footer";
+    grid-template-columns: 50px 1fr auto;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.record-card:active {
+    transform: scale(0.98);
+}
+
+.category-icon-box {
+    grid-area: icon;
+    width: 44px;
+    height: 44px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.deity-meta {
+    grid-area: info;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.deity-name {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.record-date {
+    font-size: 0.75rem;
+    color: #999;
+}
+
+.lot-badge {
+    grid-area: level;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    height: fit-content;
+}
+
+.wish-snippet {
+    grid-area: wish;
+    background: #fdfaf5;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+    line-height: 1.4;
+    border-left: 3px solid #E8D082;
+}
+
+.card-footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.lot-summary {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.card-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.action-btn {
+    border: none;
+    background: none;
+    font-size: 0.75rem;
+    color: #777;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.action-btn.delete {
+    color: #d9534f;
+}
+
+/* 空状态 */
+.empty-state {
+    text-align: center;
+    padding: 60px 32px;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.3;
+}
+
+.empty-sub {
+    font-size: 0.85rem;
+    color: #999;
+    margin: 8px 0 30px;
+}
+
+/* 弹窗 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 20px;
+    padding: 24px;
+    width: 80%;
+    max-width: 320px;
+    text-align: center;
+}
+
+.modal-btns {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.modal-btns button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+}
+
+.modal-btn-cancel {
+    background: #f0f0f0;
+    color: #666;
+}
+
+.modal-btn-confirm {
+    background: #d9534f;
+    color: #fff;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* 列表消息 */
+.list-message {
+    text-align: center;
+    color: #999;
+    padding: 40px;
+    font-size: 0.9rem;
+}
+
+/* 响应式 */
+@media (min-width: 768px) {
+    .filter-tabs {
+        justify-content: center;
+    }
+}

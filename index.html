@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心安所寄 - 愿你心安,所寄有应</title>
+    <meta name="description" content="在人生重要时刻,给你一份传统仪式的陪伴与安慰">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- 引入安全保护 (防剽窃) -->
+    <script src="security.js"></script>
+</head>
+
+<body>
+    <!-- 背景装饰 -->
+    <div class="background-decoration">
+        <div class="texture-overlay"></div>
+        <div class="cloud-pattern"></div>
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+    </div>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 顶部区域 -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">🏮</div>
+            </div>
+            <h1 class="app-title">心安所寄</h1>
+            <button class="settings-btn" aria-label="设置">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path
+                        d="M12 1v6m0 6v6m0-18l-2.5 2.5M12 1l2.5 2.5m-2.5 18.5l-2.5-2.5m2.5 2.5l2.5-2.5M1 12h6m6 0h6M1 12l2.5-2.5M1 12l2.5 2.5m18.5-2.5l-2.5-2.5m2.5 2.5l-2.5 2.5">
+                    </path>
+                </svg>
+            </button>
+        </header>
+
+        <!-- 副标题区 -->
+        <section class="hero">
+            <p class="slogan">愿你心安,所寄有应</p>
+            <div class="almanac">
+                <span class="almanac-item" id="todaySuit">今日宜: 祈福</span>
+                <span class="almanac-divider">·</span>
+                <span class="almanac-item" id="todayAvoid">忌: 忧虑</span>
+            </div>
+        </section>
+
+        <!-- 分类卡片网格 -->
+        <main class="categories-grid">
+            <!-- 生育与家庭 -->
+            <article class="category-card" data-category="fertility"
+                style="--card-color: #E8B4B8; --card-gradient: #F5E6E8;">
+                <div class="card-icon">👶</div>
+                <h2 class="card-title">生育与家庭</h2>
+                <p class="card-subtitle">求子保胎<br>家庭和睦</p>
+                <div class="card-hint">轻触进入</div>
+                <div class="card-glow"></div>
+            </article>
+
+            <!-- 姻缘与情感 -->
+            <article class="category-card" data-category="love"
+                style="--card-color: #F4C2C2; --card-gradient: #FFF0F0;">
+                <div class="card-icon">💕</div>
+                <h2 class="card-title">姻缘与情感</h2>
+                <p class="card-subtitle">良缘佳偶<br>情感顺遂</p>
+                <div class="card-hint">轻触进入</div>
+                <div class="card-glow"></div>
+            </article>
+
+            <!-- 学业与事业 -->
+            <article class="category-card" data-category="career"
+                style="--card-color: #B8D4E8; --card-gradient: #E8F4F8;">
+                <div class="card-icon">📚</div>
+                <h2 class="card-title">学业与事业</h2>
+                <p class="card-subtitle">金榜题名<br>事业有成</p>
+                <div class="card-hint">轻触进入</div>
+                <div class="card-glow"></div>
+            </article>
+
+            <!-- 财富与商业 -->
+            <article class="category-card" data-category="wealth"
+                style="--card-color: #F4E4C1; --card-gradient: #FFF9E6;">
+                <div class="card-icon">💰</div>
+                <h2 class="card-title">财富与商业</h2>
+                <p class="card-subtitle">财源广进<br>生意兴隆</p>
+                <div class="card-hint">轻触进入</div>
+                <div class="card-glow"></div>
+            </article>
+
+            <!-- 健康与长寿 -->
+            <article class="category-card" data-category="health"
+                style="--card-color: #C8E6C9; --card-gradient: #E8F5E9;">
+                <div class="card-icon">🌿</div>
+                <h2 class="card-title">健康与长寿</h2>
+                <p class="card-subtitle">身体康健<br>福寿绵长</p>
+                <div class="card-hint">轻触进入</div>
+                <div class="card-glow"></div>
+            </article>
+
+            <!-- 出行与平安 -->
+            <article class="category-card" data-category="safety"
+                style="--card-color: #D1C4E9; --card-gradient: #F3F0FF;">
+                <div class="card-icon">🧭</div>
+                <h2 class="card-title">出行与平安</h2>
+                <p class="card-subtitle">出入平安<br>一路顺风</p>
+                <div class="card-hint">轻触进入</div>
+                <div class="card-glow"></div>
+            </article>
+        </main>
+
+        <!-- 底部导航 -->
+        <nav class="bottom-nav">
+            <button class="nav-item active">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                </svg>
+                <span>首页</span>
+            </button>
+            <button class="nav-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>记录</span>
+            </button>
+            <button class="nav-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 16v-4m0-4h.01"></path>
+                </svg>
+                <span>说明</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- 时令祈福提醒弹窗 -->
+    <div id="lunarReminderModal" class="reminder-modal hidden">
+        <div class="reminder-content">
+            <div class="reminder-decoration">✨</div>
+            <h2 class="reminder-title">时令祈福</h2>
+            <p class="reminder-text">今日恰逢农历<span id="lunarDateText">初一</span>，是静心祈愿的好时机。愿您所寄皆有所应。</p>
+            <div class="reminder-actions">
+                <button class="reminder-btn primary" id="goToRitual">即刻祈愿</button>
+                <button class="reminder-btn secondary" id="closeReminder">稍后再说</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数据文件 -->
+    <script src="data-deities.js"></script>
+    <script src="data-fortunes-part1.js"></script>
+    <script src="data-fortunes-part2.js"></script>
+    <script src="data-fortunes-part3.js"></script>
+    <script src="data-fortunes-part4.js"></script>
+    <script src="data-fortunes-part5.js"></script>
+    <script src="data-fortunes-part6.js"></script>
+    <script src="data-manager.js"></script>
+
+    <!-- 主脚本 -->
+    <script src="script.js"></script>
+</body>
+
+</html>

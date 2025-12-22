@@ -1,0 +1,27 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Developer tools
+.vscode/
+.idea/
+.agent/
+
+# Temp files
+*.tmp
+temp/
+data-fortunes-merged-temp.js
+test.html
+CONTENT-REPORT.md
+DATA-README.md
+DATAMANAGER-API.md
+DATAMANAGER-UPDATE.md
+DEVELOPMENT-PLAN.md
+DRAW-PAGE-COMPLETE.md
+FORTUNE-COMPLETE.md
+FORTUNE-MERGE-COMPLETE.md
+FORTUNE-PROGRESS.md
+FORTUNE-USAGE.md
+IMAGE-SPECS.md
+TESTING-GUIDE.md
+TESTING-READY.md

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仪式 - 心安所寄</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ritual.css">
+    <script src="security.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&family=ZCOOL+XiaoWei&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="ritual-page">
+    <!-- 装饰背景与纹理 -->
+    <div class="background-decoration">
+        <div class="texture-overlay"></div>
+        <div class="cloud-pattern"></div>
+    </div>
+    <div class="ritual-bg-full">
+        <div id="deityImageContainer" class="deity-full-screen-container">
+            <!-- 动态加载神像立绘 -->
+            <div class="deity-placeholder">🙏</div>
+        </div>
+        <div class="ritual-overlay-vignette"></div>
+
+        <!-- 装饰外框 (参考用户图片边框) -->
+        <div class="ritual-frame">
+            <div class="corner tl"></div>
+            <div class="corner tr"></div>
+            <div class="corner bl"></div>
+            <div class="corner br"></div>
+        </div>
+    </div>
+
+    <!-- 神明神启 (专属话语) -->
+    <div id="deityVoiceOverlay" class="deity-voice-overlay hidden">
+        <div class="voice-card">
+            <div class="voice-decoration top">✨</div>
+            <div class="voice-text" id="deityVoiceText">愿尔心安，所寄有应。</div>
+            <div class="voice-decoration bottom">✨</div>
+        </div>
+    </div>
+
+    <!-- 顶部悬浮导航 -->
+    <nav class="floating-nav">
+        <button class="back-btn" aria-label="返回">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+        </button>
+        <div class="deity-mini-info">
+            <span id="deityNameDisplay" class="glowing-text">加载中...</span>
+            <button class="info-toggle-btn" id="showDeityInfo">详情</button>
+        </div>
+        <button class="music-btn" aria-label="音乐控制">
+            <svg class="music-icon playing" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+            </svg>
+        </button>
+    </nav>
+
+    <!-- 神明详细介绍弹窗 -->
+    <div id="deityDetailModal" class="deity-modal hidden">
+        <div class="modal-glass-content">
+            <button class="modal-close">×</button>
+            <div class="modal-body">
+                <h2 id="modalDeityName" class="modal-title">神明名号</h2>
+                <div class="info-scroll-area">
+                    <section class="info-block">
+                        <h3>神名背景</h3>
+                        <p id="modalDeityBackground">背景故事加载中...</p>
+                    </section>
+                    <section class="info-block">
+                        <h3>文化渊源</h3>
+                        <p id="modalDeityIntro">详细描述加载中...</p>
+                    </section>
+                    <section class="info-block">
+                        <h3>祈愿范围</h3>
+                        <ul id="modalScenarios" class="scenario-tags"></ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 仪式交互容器 -->
+    <main class="ritual-main-container">
+        <!-- 居中灵光特效 -->
+        <div class="deity-focus-area">
+            <div id="deityAura" class="deity-aura"></div>
+            <!-- 诵经特效容器 -->
+            <div id="sutraEffectContainer" class="sutra-aura-effect hidden"></div>
+        </div>
+
+        <!-- 底部交互区 (参考用户提供的图片布局) -->
+        <div class="ritual-controls">
+            <!-- 进度描述 (隐藏或小化) -->
+            <p id="deityDescDisplay" class="ritual-hint-text">愿你心安,所寄有应</p>
+
+            <!-- 三动作按钮 (Capsule Style) -->
+            <div class="action-row">
+                <button class="action-btn capsule-glass" data-action="incense">
+                    <span class="label">上香</span>
+                </button>
+                <button class="action-btn capsule-glass" data-action="bow">
+                    <span class="label">叩拜</span>
+                    <span class="bow-count">0/3</span>
+                </button>
+                <button class="action-btn capsule-glass" data-action="sutra">
+                    <span class="label">诵经</span>
+                </button>
+            </div>
+
+            <!-- 心愿输入框 (Large Capsule) -->
+            <div class="wish-glass-capsule">
+                <textarea class="wish-input" placeholder="填写心愿" maxlength="100" rows="1"></textarea>
+                <div class="wish-counter"><span class="current-count">0</span>/100</div>
+            </div>
+
+            <!-- 抽签按钮 (Final Button) -->
+            <div class="draw-action-area">
+                <button class="draw-btn main-action-capsule" disabled>
+                    <span class="btn-text">抽签</span>
+                </button>
+            </div>
+
+            <!-- 占位隐藏进度点(保持JS兼容) -->
+            <div class="progress-dots hidden"><span class="dot"></span><span class="dot"></span><span
+                    class="dot"></span><span class="dot"></span></div>
+            <p class="progress-text hidden"></p>
+
+            <div class="attribution-text">灵光 · 心安所寄</div>
+        </div>
+    </main>
+
+    <!-- 上香动画覆盖层 (增强版) -->
+    <div class="incense-overlay hidden">
+        <div class="incense-scene">
+            <div class="incense-sticks">
+                <div class="stick-outer">
+                    <div class="stick"></div>
+                    <div class="smoke-particles"></div>
+                </div>
+                <div class="stick-outer">
+                    <div class="stick"></div>
+                    <div class="smoke-particles"></div>
+                </div>
+                <div class="stick-outer">
+                    <div class="stick"></div>
+                    <div class="smoke-particles"></div>
+                </div>
+            </div>
+            <div class="incense-burner-3d">
+                <div class="burner-body">鼎</div>
+            </div>
+            <p class="incense-tip">心愿已承,烟升九天</p>
+        </div>
+    </div>
+
+    <!-- 叩拜动画覆盖层 (拱手作揖版) -->
+    <div class="bow-overlay hidden">
+        <div class="bow-animation">
+            <div class="bow-clasp-hands">
+                <!-- 替换为符合用户图片的“合十”静态SVG -->
+                <svg width="150" height="150" viewBox="0 0 100 100" class="hezhang-svg">
+                    <path
+                        d="M50 90 L35 70 C30 60 32 40 40 25 C45 15 50 10 50 10 C50 10 55 15 60 25 C68 40 70 60 65 70 L50 90"
+                        fill="none" stroke="#E8D082" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M50 10 L50 90" stroke="#E8D082" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6" />
+                    <path d="M42 35 C45 30 55 30 58 35" stroke="#E8D082" stroke-width="1" fill="none" opacity="0.5" />
+                </svg>
+            </div>
+            <div class="bow-ripple"></div>
+            <p class="bow-instruction">心存敬意,拱手作揖</p>
+        </div>
+    </div>
+
+    <!-- 诵经特效覆盖层 (佛法传递) -->
+    <div class="sutra-overlay hidden">
+        <div class="sutra-particles"></div>
+        <div class="sutra-text-flow" id="sutraFlow"></div>
+        <p class="sutra-instruction">佛法润心,万事顺遂</p>
+    </div>
+
+    <!-- 隐藏音频控制 -->
+    <audio id="bgMusic" loop preload="auto"></audio>
+    <audio id="sutraAudio" preload="auto"></audio>
+    <audio id="actionSound" preload="auto"
+        src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
+    <audio id="bellSound" preload="auto" src="https://assets.mixkit.co/active_storage/sfx/615/615-preview.mp3"></audio>
+
+    <!-- 数据文件 -->
+    <script src="data-deities.js"></script>
+    <script src="data-fortunes-part1.js"></script>
+    <script src="data-fortunes-part2.js"></script>
+    <script src="data-fortunes-part3.js"></script>
+    <script src="data-fortunes-part4.js"></script>
+    <script src="data-fortunes-part5.js"></script>
+    <script src="data-fortunes-part6.js"></script>
+    <script src="data-manager.js"></script>
+    <script src="ritual.js"></script>
+</body>
+
+</html>

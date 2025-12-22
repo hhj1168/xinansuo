@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置 - 心安所寄</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="settings.css">
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <header class="settings-header">
+        <div class="header-container">
+            <button class="back-btn" onclick="location.href='index.html'">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <h1 class="header-title">系统设置</h1>
+            <div class="header-placeholder"></div>
+        </div>
+    </header>
+
+    <main class="settings-main">
+        <!-- 基础偏好 -->
+        <section class="settings-group">
+            <h3 class="group-title">基础偏好</h3>
+            <div class="settings-list">
+                <!-- 背景音乐 -->
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <h4>背景音乐</h4>
+                        <p>仪式过程中播放静心音乐</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="musicToggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <!-- 音效反馈 -->
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <h4>互动音效</h4>
+                        <p>上香、叩拜等动作的音效</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="soundToggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <!-- 震动反馈 -->
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <h4>震动反馈</h4>
+                        <p>仪式动作完成时的触感反馈</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="vibrateToggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- 提醒设置 -->
+        <section class="settings-group">
+            <h3 class="group-title">提醒设置</h3>
+            <div class="settings-list">
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <h4>每日祈愿提醒</h4>
+                        <p>设定时间提醒您每日静心</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="reminderToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div id="reminderTimeBox" class="setting-sub-item hidden">
+                    <span class="sub-label">提醒时间</span>
+                    <input type="time" id="reminderTime" value="08:00">
+                </div>
+            </div>
+        </section>
+
+        <!-- 数据与存储 -->
+        <section class="settings-group">
+            <h3 class="group-title">数据管理</h3>
+            <div class="settings-list">
+                <button class="setting-btn-item" id="exportData">
+                    <div class="setting-label">
+                        <h4>导出数据备份</h4>
+                        <p>以JSON格式保存您的祈愿记录</p>
+                    </div>
+                    <div class="arrow">›</div>
+                </button>
+                <button class="setting-btn-item" id="clearData">
+                    <div class="setting-label">
+                        <h4 class="text-danger">清空所有记录</h4>
+                        <p>将清除本地存储的所有祈愿历史</p>
+                    </div>
+                    <div class="arrow">›</div>
+                </button>
+            </div>
+        </section>
+
+        <!-- 关于 -->
+        <section class="settings-group">
+            <h3 class="group-title">关于</h3>
+            <div class="settings-list">
+                <button class="setting-btn-item" onclick="location.href='instructions.html'">
+                    <div class="setting-label">
+                        <h4>使用说明</h4>
+                        <p>了解如何开启祈愿之旅</p>
+                    </div>
+                    <div class="arrow">›</div>
+                </button>
+                <div class="setting-item no-border">
+                    <div class="setting-label">
+                        <h4>当前版本</h4>
+                    </div>
+                    <span class="version-tag">V1.0.2 Alpha</span>
+                </div>
+                <div class="setting-item no-border">
+                    <div class="setting-label">
+                        <h4>开发者</h4>
+                    </div>
+                    <span class="dev-tag">灵光工作室</span>
+                </div>
+            </div>
+        </section>
+
+        <footer class="settings-footer">
+            <p>愿你心安,所寄有应</p>
+        </footer>
+    </main>
+
+    <!-- 确认清除弹窗 -->
+    <div id="clearModal" class="modal hidden">
+        <div class="modal-content">
+            <h3 class="text-danger">确认清除？</h3>
+            <p>此操作将永久删除您的所有祈愿记录，且不可恢复。</p>
+            <div class="modal-btns">
+                <button class="modal-btn-cancel">取消</button>
+                <button class="modal-btn-confirm btn-danger">确定清空</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 脚本引用 -->
+    <script src="data-manager.js"></script>
+    <script src="settings.js"></script>
+</body>
+
+</html>

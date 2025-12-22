@@ -1,0 +1,329 @@
+/* ==================== 分类详情页样式 ==================== */
+
+:root {
+    --header-height: 60px;
+    --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --card-hover-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+body {
+    background-color: #f8f6f2;
+    /* 米白色背景 */
+    color: #333;
+    padding-top: var(--header-height);
+}
+
+/* 顶部导航栏 */
+.category-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+}
+
+.back-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.back-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.header-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.placeholder-right {
+    width: 40px;
+}
+
+/* 分类说明卡片 (Hero Section) */
+.category-hero {
+    margin: 16px;
+    padding: 24px;
+    border-radius: 20px;
+    background: var(--category-bg, #fff);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    color: var(--category-text, #333);
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: slideDown 0.6s ease-out;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.hero-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    max-width: 80%;
+}
+
+.hero-icon {
+    position: absolute;
+    right: 0px;
+    bottom: -10px;
+    font-size: 80px;
+    opacity: 0.1;
+    transition: transform 0.5s ease;
+}
+
+.category-hero:hover .hero-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.hero-bg-decoration {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0 0c50 0 50 100 100 100V0H0z" fill="white" fill-opacity="0.05"/></svg>');
+    background-size: cover;
+    z-index: 1;
+}
+
+/* 神明列表区域 */
+.deity-list-section {
+    padding: 8px 16px 40px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.list-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #888;
+    margin-bottom: 16px;
+    padding-left: 4px;
+}
+
+.deity-list {
+    display: grid;
+    gap: 16px;
+}
+
+/* 神明卡片 */
+.deity-card {
+    display: flex;
+    background: #fff;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.deity-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.deity-avatar-wrapper {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    margin-right: 16px;
+    position: relative;
+}
+
+.deity-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    /* 针对全身立绘优化，优先显示头部 */
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease;
+}
+
+.deity-card:hover .deity-avatar {
+    transform: scale(1.05);
+}
+
+.deity-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.deity-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #222;
+}
+
+.deity-description {
+    font-size: 0.88rem;
+    color: #666;
+    margin-bottom: 6px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.deity-scenarios {
+    font-size: 0.75rem;
+    color: #999;
+}
+
+.scenarios-label {
+    background: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-right: 4px;
+}
+
+.go-ritual-btn {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    font-size: 0.8rem;
+    color: var(--primary-color, #D4AF37);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: transform 0.3s;
+}
+
+.deity-card:hover .go-ritual-btn {
+    transform: translateX(4px);
+}
+
+/* 空状态 */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-state.hidden {
+    display: none;
+}
+
+.empty-illustration {
+    font-size: 64px;
+    margin-bottom: 20px;
+    filter: grayscale(1) opacity(0.5);
+}
+
+.empty-text {
+    color: #888;
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+/* 底部装饰 */
+.category-footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: #bbb;
+    font-size: 0.8rem;
+}
+
+/* 加载状态 */
+.loading-state {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* 动画 */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* 响应式调整 */
+@media (min-width: 768px) {
+    .deity-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .category-main {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    .deity-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .category-main {
+        max-width: 1200px;
+    }
+}

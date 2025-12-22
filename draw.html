@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽签结果 - 心安所寄</title>
+    <link rel="stylesheet" href="draw.css">
+    <script src="security.js"></script>
+</head>
+
+<body>
+    <!-- 悬浮导航 -->
+    <nav class="floating-nav">
+        <button class="nav-back" onclick="history.back()">
+            <span class="icon">←</span>
+        </button>
+        <h1 class="nav-title">抽签结果</h1>
+        <button class="nav-share">
+            <span class="icon">⋯</span>
+        </button>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 抽签动画区 -->
+        <div class="animation-container" id="animationContainer">
+            <div class="fortune-stick-container">
+                <div class="fortune-stick" id="fortuneStick">
+                    <div class="stick-body"></div>
+                    <div class="stick-text" id="stickText">签</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 签文展示区 -->
+        <div class="fortune-content" id="fortuneContent" style="display: none;">
+            <!-- 神明信息 -->
+            <div class="deity-info">
+                <img class="deity-avatar" id="deityAvatar" src="" alt="">
+                <div class="deity-name" id="deityName"></div>
+            </div>
+
+            <!-- 签号和签级 -->
+            <div class="fortune-header">
+                <div class="fortune-number-wrapper">
+                    <span class="fortune-decoration">═══</span>
+                    <span class="fortune-number" id="fortuneNumber">第一签</span>
+                    <span class="fortune-decoration">═══</span>
+                </div>
+                <div class="fortune-level" id="fortuneLevel">上上签</div>
+            </div>
+
+            <!-- 古文签诗 -->
+            <div class="poem-container">
+                <div class="poem-scroll">
+                    <div class="poem-content" id="poemContent">
+                        <p>春回大地万物生,</p>
+                        <p>喜鹊枝头报佳音,</p>
+                        <p>贵人相助得偿愿,</p>
+                        <p>阖家欢乐添新丁。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 白话解读 -->
+            <div class="interpretation-section">
+                <h3 class="section-title">【白话解读】</h3>
+                <p class="interpretation-text" id="interpretationText">
+                    此签大吉。您所求之子嗣,正如春回大地,万物复苏,好消息即将到来。
+                </p>
+            </div>
+
+            <!-- 行动建议 -->
+            <div class="suggestions-section">
+                <h3 class="section-title">【行动建议】</h3>
+                <ul class="suggestions-list" id="suggestionsList">
+                    <li>与伴侣共同进行孕前检查,科学备孕</li>
+                    <li>保持规律作息,适度运动,注意营养均衡</li>
+                    <li>减少生活压力,多与家人朋友交流</li>
+                </ul>
+            </div>
+
+            <!-- 时间戳 -->
+            <div class="fortune-timestamp">
+                <span id="fortuneTime"></span>
+            </div>
+        </div>
+
+        <!-- 底部操作区 -->
+        <div class="action-buttons" id="actionButtons" style="display: none;">
+            <button class="btn btn-secondary" id="saveBtn">
+                <span class="btn-icon">💾</span>
+                保存到记录
+            </button>
+            <button class="btn btn-primary" id="savePosterBtn">
+                <span class="btn-icon">🖼️</span>
+                生成海报
+            </button>
+            <button class="btn btn-secondary" id="drawAgainBtn">
+                <span class="btn-icon">🎲</span>
+                再抽一次
+            </button>
+            <button class="btn btn-secondary" id="backBtn">
+                <span class="btn-icon">🏠</span>
+                返回首页
+            </button>
+        </div>
+    </div>
+
+    <!-- 保存成功提示 -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-text">已保存到记录</span>
+    </div>
+
+    <!-- 隐藏音频控制 -->
+    <audio id="bgMusic" loop preload="auto"></audio>
+    <audio id="drawSound" preload="auto"
+        src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
+
+    <!-- 脚本库 -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="data-deities.js"></script>
+    <script src="data-fortunes-part1.js"></script>
+    <script src="data-fortunes-part2.js"></script>
+    <script src="data-fortunes-part3.js"></script>
+    <script src="data-fortunes-part4.js"></script>
+    <script src="data-fortunes-part5.js"></script>
+    <script src="data-fortunes-part6.js"></script>
+    <script src="data-manager.js"></script>
+
+    <!-- 页面脚本 -->
+    <script src="draw.js"></script>
+</body>
+
+</html>
