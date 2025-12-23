@@ -255,3 +255,56 @@ section {
         grid-template-columns: 1fr;
     }
 }
+
+/* ==================== 夜间模式适配 ==================== */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+    }
+
+    .instructions-header {
+        background: rgba(30, 30, 30, 0.9);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .back-btn {
+        color: #fff;
+    }
+
+    .header-title {
+        color: #e8d082;
+    }
+
+    .step-item,
+    .accordion,
+    .meaning-card,
+    .disclaimer-card {
+        background: #2c2c2c;
+        box-shadow: none;
+        border: 1px solid #444;
+    }
+
+    .step-content h4,
+    .group-title,
+    .accordion-header,
+    .meaning-card h5 {
+        color: #e8d082;
+    }
+
+    .step-content p,
+    .accordion-body p,
+    .meaning-card p,
+    .disclaimer-card p {
+        color: #ccc;
+    }
+
+    .disclaimer-card {
+        background: #3a2020;
+        border-left-color: #ff6b6b;
+    }
+
+    .disclaimer-card h4 {
+        color: #ff6b6b;
+    }
+}

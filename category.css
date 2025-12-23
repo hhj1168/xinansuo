@@ -171,6 +171,10 @@ body {
     flex-shrink: 0;
     margin-right: 16px;
     position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #fff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .deity-avatar {
@@ -179,9 +183,7 @@ body {
     object-fit: cover;
     object-position: top center;
     /* 针对全身立绘优化，优先显示头部 */
-    border-radius: 50%;
-    border: 2px solid #fff;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
     transition: transform 0.5s ease;
 }
 
@@ -354,12 +356,22 @@ body {
     object-position: center 15%;
 }
 
-/* 药师佛 */
+/* 药师佛 - 放大并居中 */
 .deity-card[data-id="yaoshi"] .deity-avatar {
-    object-position: center 25%;
+    object-position: center 20%;
+    transform: scale(1.6);
 }
 
-/* 保生大帝 */
+.deity-card[data-id="yaoshi"]:hover .deity-avatar {
+    transform: scale(1.7);
+}
+
+/* 保生大帝 - 放大并居中 */
 .deity-card[data-id="baosheng"] .deity-avatar {
-    object-position: center 25%;
+    object-position: center 18%;
+    transform: scale(1.6);
+}
+
+.deity-card[data-id="baosheng"]:hover .deity-avatar {
+    transform: scale(1.7);
 }
