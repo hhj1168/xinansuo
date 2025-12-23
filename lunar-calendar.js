@@ -84,91 +84,79 @@ class LunarCalendar {
     monthDays(y, m) {
         // 月份大小在 lunarInfo 的 bit 4-15
         // 0x10000 >> m 对应第 m 个月 (从1开始)
-        return ((this.lunarInfo[y - 1900] & (0x10000 >> m)) ? 30 : 29);
+        // 0x10000 >> m 这个位运算是错误的，应该是 0x8000 >> (m-1)
+        // 0x8000 是第12个月，0x4000是第11个月... 0x8是第1个月
+        // 修正：0x100000 >> m 对应第 m 个月 (从1开始)
+        // 0x100000 (17位) -> 12月 (16位) -> 1月 (5位)
+        // 0x8000 (16位) -> 12月 (15位) -> 1月 (4位)
+        // lunarInfo 的 bit 4-15 对应 1-12月
+        // 所以 1月对应 bit 4 (0x10), 12月对应 bit 15 (0x8000)
+        // 0x10 << (m-1)
+        return ((this.lunarInfo[y - 1900] & (0x10 << (m - 1))) ? 30 : 29);
     }
 
     // 传入公历年月日，返回农历对象
     solarToLunar(y, m, d) {
         // 1. 基准时间 1900-01-31 (农历1900年正月初一)
-        // Date.UTC(year, monthIndex, day) monthIndex is 0-11
-        const baseDate = new Date(Date.UTC(1900, 0, 31, 16, 0, 0)); // 1900-01-31 16:00:00 UTC = 1900-02-01 00:00:00 CST (农历正月初一)
-        const objDate = new Date(Date.UTC(y, m - 1, d, 16, 0, 0)); // 将输入日期也转换为UTC，并调整时区差
-        let offset = (objDate.getTime() - baseDate.getTime()) / 86400000; // 转换为天数
+        const baseDate = new Date(Date.UTC(1900, 0, 31));
+        const objDate = new Date(Date.UTC(y, m - 1, d));
+        let offset = Math.floor((objDate - baseDate) / 86400000);
 
         let i, leap = 0, temp = 0;
-        let lYear = 0, lMonth = 0, lDay = 0;
+        let lYear = 1900;
 
-        // 2. 循环减去每一年的天数，确定农历年份
-        // 农历年份从1900年开始计算
-        for (i = 1900; i < 2050 && offset > 0; i++) {
-            temp = this.lYearDays(i);
-            offset -= temp;
-            lYear = i;
-        }
-
-        if (offset < 0) {
-            offset += temp;
-            lYear--;
-        }
-
-        // 3. 确定农历月份
-        leap = this.leapMonth(lYear); // 闰哪个月 (0表示无闰月)
-        let isLeap = false; // 标记当前是否在计算闰月
-
-        for (i = 1; i < 13 && offset > 0; i++) {
-            // 如果当前月份是闰月，并且还没有计算过闰月
-            if (leap > 0 && i === leap && !isLeap) {
-                --i; // 回退一个月，准备计算闰月
-                isLeap = true;
-                temp = this.leapDays(lYear); // 获取闰月天数
+        // 2. 年份循环
+        while (true) {
+            temp = this.lYearDays(lYear);
+            if (offset >= temp) {
+                offset -= temp;
+                lYear++;
             } else {
-                temp = this.monthDays(lYear, i); // 获取当前月份天数
-            }
-
-            // 如果是闰月，并且已经计算过闰月，则解除闰月标记
-            if (isLeap && i === leap) isLeap = false;
-
-            offset -= temp;
-            if (!isLeap) lMonth = i; // 正常月份
-            else lMonth = i; // 闰月也记录为该月份
-        }
-
-        // 修正恰好整除的情况
-        if (offset === 0 && leap > 0 && i === leap + 1) {
-            if (isLeap) { // 刚好是闰月的最后一天
-                isLeap = false;
-            } else { // 刚好是正常月份的最后一天，且后面有闰月
-                isLeap = true;
-                --i;
+                break;
             }
         }
 
-        if (offset < 0) {
-            offset += temp;
-            --i;
-            if (isLeap) { // 如果是闰月回退
-                isLeap = false;
-            } else { // 如果是正常月份回退，检查是否是闰月的前一个正常月
-                if (leap > 0 && i === leap) {
+        // 3. 月份循环
+        let lMonth = 1;
+        let isLeap = false;
+        leap = this.leapMonth(lYear);
+
+        for (i = 1; i <= 12; i++) {
+            // 3.1 正常月
+            temp = this.monthDays(lYear, i);
+            if (offset >= temp) {
+                offset -= temp;
+            } else {
+                lMonth = i;
+                break;
+            }
+
+            // 3.2 闰月 (如果当前月是闰月月份)
+            if (leap > 0 && i === leap) {
+                temp = this.leapDays(lYear);
+                if (offset >= temp) {
+                    offset -= temp;
+                } else {
+                    lMonth = i;
                     isLeap = true;
+                    break;
                 }
             }
-            lMonth = i;
         }
 
-        lDay = offset + 1;
+        let lDay = offset + 1;
 
-        // 4. 计算干支、生肖、节气
+        // 4. 计算干支、节气
         const gzYear = this.getCyclical(lYear);
-        const term = this.getSolarTerm(y, m, d); // 仅当天显示节气
+        const term = this.getSolarTerm(y, m, d);
 
         return {
             lYear: lYear,
             lMonth: lMonth,
             lDay: lDay,
-            isLeap: (leap > 0 && lMonth === leap && isLeap), // 标记是否是闰月
+            isLeap: isLeap,
             Animal: this.Animals[(lYear - 4) % 12],
-            IMonthCn: ((leap > 0 && lMonth === leap && isLeap) ? "闰" : "") + this.MonthCn[lMonth - 1],
+            IMonthCn: (isLeap ? "闰" : "") + this.MonthCn[lMonth - 1],
             IDayCn: this.DayCn[lDay - 1],
             Term: term,
             gzYear: gzYear
