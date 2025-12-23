@@ -263,6 +263,7 @@ function performBow(btn) {
 }
 
 // ==================== 诵经 ====================
+// ==================== 诵经 ====================
 function playSutra(btn) {
     if (ritualState.sutraPlayed) {
         showToast('已经诵过经了');
@@ -276,16 +277,21 @@ function playSutra(btn) {
     aura.classList.remove('hidden');
 
     // 动态设置诵经话语
+    let mantraText = "南无阿弥陀佛";
     const mantraEl = sutraOverlay.querySelector('.sutra-instruction');
-    if (mantraEl && ritualState.currentDeity && ritualState.currentDeity.sutraMantra) {
-        mantraEl.textContent = ritualState.currentDeity.sutraMantra;
+    if (ritualState.currentDeity && ritualState.currentDeity.sutraMantra) {
+        mantraText = ritualState.currentDeity.sutraMantra;
+        if (mantraEl) mantraEl.textContent = mantraText;
     }
 
-    // 播放音频
+    // 播放音频 (背景梵音)
     const audio = document.getElementById('sutraAudio');
     if (audio.src) {
         audio.play().catch(e => console.log('诵经音频播放受阻'));
     }
+
+    // 朗诵禅语 (TTS)
+    speakText(mantraText);
 
     // 生成经文漂浮动画
     const characters = ["唵", "嘛", "呢", "呗", "美", "吽", "妙", "法", "莲", "华", "福", "寿", "安", "泰"];
@@ -309,6 +315,32 @@ function playSutra(btn) {
         updateProgress();
         showToast('经音入耳,万事顺心');
     }, 5000);
+}
+
+// 语音朗诵禅语 (TTS)
+function speakText(text) {
+    if (!window.speechSynthesis) {
+        console.log('当前浏览器不支持语音合成');
+        return;
+    }
+
+    // 取消之前的朗读
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'zh-CN';
+    utterance.rate = 0.8; // 语速稍慢,更庄重
+    utterance.pitch = 0.9; // 音调稍低,更沉稳
+    utterance.volume = 1.0;
+
+    // 尝试获取中文语音包
+    const voices = window.speechSynthesis.getVoices();
+    const zhVoice = voices.find(voice => voice.lang.includes('zh'));
+    if (zhVoice) {
+        utterance.voice = zhVoice;
+    }
+
+    window.speechSynthesis.speak(utterance);
 }
 
 // ==================== 更新进度 ====================
