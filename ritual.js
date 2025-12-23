@@ -28,6 +28,13 @@ function activateAudio() {
         const musicIcon = document.querySelector('.music-icon');
         if (musicIcon) musicIcon.classList.add('playing');
     }
+
+    // 针对移动端: 激活语音合成 (播放一个静音片段)
+    if (window.speechSynthesis) {
+        const dummy = new SpeechSynthesisUtterance('');
+        dummy.volume = 0;
+        window.speechSynthesis.speak(dummy);
+    }
 }
 
 // ==================== 加载神明信息 ====================
@@ -317,7 +324,7 @@ function playSutra(btn) {
     }, 5000);
 }
 
-// 语音朗诵禅语 (TTS)
+// 语音朗诵禅语 (TTS) - 针对移动端优化
 function speakText(text) {
     if (!window.speechSynthesis) {
         console.log('当前浏览器不支持语音合成');
@@ -329,18 +336,36 @@ function speakText(text) {
 
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'zh-CN';
-    utterance.rate = 0.8; // 语速稍慢,更庄重
-    utterance.pitch = 0.9; // 音调稍低,更沉稳
+    utterance.rate = 0.8;
+    utterance.pitch = 0.9;
     utterance.volume = 1.0;
 
-    // 尝试获取中文语音包
+    // 移动端兼容性处理: 确保Voices已加载
     const voices = window.speechSynthesis.getVoices();
-    const zhVoice = voices.find(voice => voice.lang.includes('zh'));
+
+    // 如果没有语音包(可能是异步加载中), 等待一下再尝试
+    if (voices.length === 0) {
+        window.speechSynthesis.onvoiceschanged = () => {
+            const updatedVoices = window.speechSynthesis.getVoices();
+            setBestVoice(utterance, updatedVoices);
+            window.speechSynthesis.speak(utterance);
+            // 移除监听避免重复
+            window.speechSynthesis.onvoiceschanged = null;
+        };
+        // 如果监听不起作用，直接尝试播放(使用默认语音)
+        window.speechSynthesis.speak(utterance);
+    } else {
+        setBestVoice(utterance, voices);
+        window.speechSynthesis.speak(utterance);
+    }
+}
+
+function setBestVoice(utterance, voices) {
+    // 优先寻找中文语音
+    const zhVoice = voices.find(voice => voice.lang.includes('zh') || voice.lang.includes('CN'));
     if (zhVoice) {
         utterance.voice = zhVoice;
     }
-
-    window.speechSynthesis.speak(utterance);
 }
 
 // ==================== 更新进度 ====================
