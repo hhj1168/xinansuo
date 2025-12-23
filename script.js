@@ -15,7 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==================== 黄历动态加载 ====================
+// ==================== 黄历与日期动态加载 ====================
 function initAlmanac() {
+    updateDateDisplay(); // 更新日期显示 (万年历)
+
     const suitEl = document.getElementById('todaySuit');
     const avoidEl = document.getElementById('todayAvoid');
 
@@ -38,8 +41,39 @@ function initAlmanac() {
     const sIndex = getIndex(suitItems, daySeed);
     const aIndex = getIndex(avoidItems, daySeed + 1);
 
-    suitEl.textContent = `今日宜: ${suitItems[sIndex]}`;
+    suitEl.textContent = `宜: ${suitItems[sIndex]}`;
     avoidEl.textContent = `忌: ${avoidItems[aIndex]}`;
+}
+
+// 更新万年历显示
+function updateDateDisplay() {
+    const now = new Date();
+    const weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+
+    // 1. 更新公历
+    document.getElementById('solarYear').textContent = now.getFullYear();
+    document.getElementById('solarDate').textContent = `${now.getMonth() + 1}/${now.getDate()}`;
+    document.getElementById('solarWeek').textContent = weekDays[now.getDay()];
+
+    // 2. 更新农历 (依赖 lunar-calendar.js)
+    if (window.LunarCalendar) {
+        const lunarData = window.LunarCalendar.solarToLunar(now.getFullYear(), now.getMonth() + 1, now.getDate());
+
+        // 显示农历年 (如: 癸卯年)
+        document.getElementById('lunarYear').textContent = `${lunarData.gzYear}年`;
+
+        // 显示农历日期 (如: 冬月十一)
+        document.getElementById('lunarDate').textContent = `${lunarData.IMonthCn}${lunarData.IDayCn}`;
+
+        // 显示节气 (如果有，否则显示生肖)
+        if (lunarData.Term) {
+            document.getElementById('lunarTerm').textContent = lunarData.Term;
+            document.getElementById('lunarTerm').style.color = '#c44536'; // 节气高亮
+        } else {
+            document.getElementById('lunarTerm').textContent = `生肖:${lunarData.Animal}`;
+            document.getElementById('lunarTerm').style.color = '#888';
+        }
+    }
 }
 
 // ==================== 时令提醒 (初一/十五) ====================

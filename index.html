@@ -7,6 +7,7 @@
     <title>心安所寄 - 愿你心安,所寄有应</title>
     <meta name="description" content="在人生重要时刻,给你一份传统仪式的陪伴与安慰">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="calendar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -46,11 +47,30 @@
 
         <!-- 副标题区 -->
         <section class="hero">
-            <p class="slogan">愿你心安,所寄有应</p>
-            <div class="almanac">
-                <span class="almanac-item" id="todaySuit">今日宜: 祈福</span>
-                <span class="almanac-divider">·</span>
-                <span class="almanac-item" id="todayAvoid">忌: 忧虑</span>
+            <div class="calendar-container">
+                <!-- 左侧公历 -->
+                <div class="date-side solar-side">
+                    <span class="date-year" id="solarYear">2023</span>
+                    <span class="date-md" id="solarDate">12/23</span>
+                    <span class="date-week" id="solarWeek">星期六</span>
+                </div>
+
+                <!-- 中间Slogan -->
+                <div class="hero-center">
+                    <p class="slogan">愿你心安,所寄有应</p>
+                    <div class="almanac-text">
+                        <span id="todaySuit">宜: 祈福</span>
+                        <span class="divider"></span>
+                        <span id="todayAvoid">忌: 忧虑</span>
+                    </div>
+                </div>
+
+                <!-- 右侧农历 -->
+                <div class="date-side lunar-side">
+                    <span class="date-lunar-year" id="lunarYear">癸卯年</span>
+                    <span class="date-lunar-md" id="lunarDate">冬月十一</span>
+                    <span class="date-term" id="lunarTerm">冬至</span>
+                </div>
             </div>
         </section>
 
@@ -165,6 +185,7 @@
     <script src="data-manager.js"></script>
 
     <!-- 主脚本 -->
+    <script src="lunar-calendar.js"></script>
     <script src="script.js"></script>
 </body>
 

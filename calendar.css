@@ -1,0 +1,135 @@
+/* ==================== 首页万年历布局样式 ==================== */
+
+/* 1. 复写 Hero 区域布局 */
+.hero {
+    /* 保持原有的磨砂玻璃背景和圆角 */
+    padding: 24px 16px;
+    /* 增加 Flex 布局以容纳左右日历 */
+}
+
+/* 2. 万年历容器 */
+.calendar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* 3. 两侧日期块 (公历/农历) */
+.date-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    /* 固定宽度防止抖动 */
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+}
+
+/* 左侧公历 */
+.solar-side {
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    /* 淡淡的分隔线 */
+    padding-right: 12px;
+}
+
+.date-year {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    letter-spacing: 1px;
+}
+
+.date-md {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin: 4px 0;
+}
+
+.date-week {
+    font-size: 12px;
+    color: var(--primary-gold);
+}
+
+/* 右侧农历 */
+.lunar-side {
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
+    padding-left: 12px;
+}
+
+.date-lunar-year {
+    font-size: 12px;
+    color: var(--text-tertiary);
+}
+
+.date-lunar-md {
+    font-size: 16px;
+    /* 农历汉字稍小一点更精致 */
+    font-weight: bold;
+    color: var(--primary-red);
+    /* 农历用红色强调 */
+    line-height: 1.4;
+    margin: 4px 0;
+}
+
+.date-term {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* 4. 中间 Slogan 区域 */
+.hero-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+/* 调整原来的 slogan 样式 */
+.hero-center .slogan {
+    margin-bottom: 8px;
+    /* 减小间距 */
+    font-size: 18px;
+    white-space: nowrap;
+    /* 防止换行 */
+}
+
+/* 调整原来的宜忌样式 */
+.almanac-text {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-secondary);
+    gap: 8px;
+}
+
+.almanac-text .divider {
+    width: 1px;
+    height: 10px;
+    background: #ccc;
+    display: inline-block;
+}
+
+/* ==================== 移动端适配 ==================== */
+@media (max-width: 375px) {
+    .calendar-container {
+        /* 极窄屏幕缩小字体 */
+        transform: scale(0.95);
+    }
+
+    .date-side {
+        width: 70px;
+    }
+
+    .date-md {
+        font-size: 18px;
+    }
+
+    .hero-center .slogan {
+        font-size: 16px;
+    }
+}
