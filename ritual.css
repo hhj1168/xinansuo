@@ -585,23 +585,44 @@
     align-items: center;
 }
 
-.hezhang-svg {
-    filter: drop-shadow(0 0 20px rgba(232, 208, 130, 0.6));
-    animation: hezhangPulse 3s ease-in-out infinite;
-    transform-origin: center center;
+.zuoyi-svg {
+    filter: drop-shadow(0 0 25px rgba(232, 208, 130, 0.4));
+    transform-origin: center bottom;
+    /* 动画名称: 作揖律动 */
+    animation: zuoyiAction 3s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
 }
 
-@keyframes hezhangPulse {
-
-    0%,
-    100% {
-        transform: scale(1);
+/* 
+   三段式作揖律动: 
+   0-20%: 起手 (微抬,微张)
+   20-50%: 下拜 (前推,合并)
+   50-100%: 定势 (回稳,微颤)
+*/
+@keyframes zuoyiAction {
+    0% {
+        transform: translateY(0) scale(0.95) rotateX(0deg);
         opacity: 0.8;
     }
 
+    20% {
+        transform: translateY(-10px) scale(1) rotateX(10deg);
+        opacity: 0.9;
+    }
+
     50% {
-        transform: scale(1.05);
+        transform: translateY(5px) scale(0.95) rotateX(-5deg);
         opacity: 1;
+        filter: drop-shadow(0 0 40px rgba(232, 208, 130, 0.9));
+    }
+
+    70% {
+        transform: translateY(0) scale(0.98);
+        opacity: 0.95;
+    }
+
+    100% {
+        transform: translateY(0) scale(0.95) rotateX(0deg);
+        opacity: 0.8;
     }
 }
 
