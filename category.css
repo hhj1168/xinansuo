@@ -358,7 +358,7 @@ body {
 
 /* 药师佛 - 放大并居中 */
 .deity-card[data-id="yaoshi"] .deity-avatar {
-    object-position: center 20%;
+    object-position: center 35%;
     transform: scale(1.6);
 }
 
@@ -368,8 +368,12 @@ body {
 
 /* 保生大帝 - 放大并居中 */
 .deity-card[data-id="baosheng"] .deity-avatar {
-    object-position: center 18%;
+    object-position: center 35%;
     transform: scale(1.6);
+}
+
+.deity-card[data-id="baosheng"]:hover .deity-avatar {
+    transform: scale(1.7);
 }
 
 .deity-card[data-id="baosheng"]:hover .deity-avatar {
