@@ -21,8 +21,8 @@ body {
     right: 0;
     height: var(--header-height);
     background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -98,7 +98,6 @@ body {
 .hero-desc {
     font-size: 0.95rem;
     line-height: 1.6;
-    opacity: 0.9;
     max-width: 80%;
 }
 
@@ -135,7 +134,7 @@ body {
 .list-title {
     font-size: 0.9rem;
     font-weight: 500;
-    color: #888;
+    color: #555;
     margin-bottom: 16px;
     padding-left: 4px;
 }
@@ -208,18 +207,19 @@ body {
 
 .deity-description {
     font-size: 0.88rem;
-    color: #666;
+    color: #444;
     margin-bottom: 6px;
     line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
 .deity-scenarios {
     font-size: 0.75rem;
-    color: #999;
+    color: #777;
 }
 
 .scenarios-label {
@@ -272,7 +272,7 @@ body {
 .category-footer {
     text-align: center;
     padding: 40px 20px;
-    color: #bbb;
+    color: #888;
     font-size: 0.8rem;
 }
 
